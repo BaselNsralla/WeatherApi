@@ -5,4 +5,4 @@ Weather station API
 Namn1: Basel Nsralla. Adress: Rågången 10.
 Namn2: Edvin Fagerström. Adress: Astreavägen 6.
 
-**This can be useed for comercial purposes**
+**This can be used for comercial purposes**
