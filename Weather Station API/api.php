@@ -7,50 +7,34 @@ if(isset($_GET["weather"])){
     $opt = $_GET["weather"];
     if($opt=="general"){
        fullReq($opt,$dbh);
-
-
-
-
-    }else{
+    } else {
     inDirect($opt,$dbh);
-
     }
-
-
-
-
 }
 
 
 function direct($option,$dbh){
     $sql = "SELECT ".$option." FROM general ORDER BY id DESC LIMIT 1";
     $stmt = $dbh->prepare($sql);
-
     $stmt->execute();
     $response = $stmt->fetch();
     if  ($response != null){
-      
-        echo json_encode($response,JSON_UNESCAPED_UNICODE);
+      echo json_encode($response,JSON_UNESCAPED_UNICODE);
     }else{
-          echo "400 BAD request: request is malformed";
-        
+      echo "400 BAD request: request is malformed";  
     }
 }
 
 function inDirect($opt,$dbh){
-        $nyckel = 2138126381236213;
+        $nyckel = -1;
         global $arr;
-        foreach($arr as $key=>$val){
+        foreach($arr as $key => $val){
             if  (strtolower($opt) ==  strtolower($val)){
-                $nyckel=$key;
+                $nyckel = $key;
                 break;
-
             }
-
         }
-
-        if  ($nyckel != 2138126381236213){
-
+        if  ($nyckel != -1) {
             $sql = "SELECT * FROM general ORDER BY id DESC LIMIT 1";
             $stmt = $dbh->prepare($sql);
             $stmt->execute();
@@ -65,27 +49,18 @@ function inDirect($opt,$dbh){
             }
             $v = $response[$nyckel];
             $newQ = array($nyckel=>$v);
-            echo json_encode($newQ,JSON_UNESCAPED_UNICODE);
-
-        }else{
-            direct($opt,$dbh);
-          
-
+            echo json_encode($newQ, JSON_UNESCAPED_UNICODE);
+        } else {
+            direct($opt, $dbh);
         }
-    
 }
 
 function fullReq($opt,$dbh){
      $sql = "SELECT * FROM general ORDER BY id DESC LIMIT 1";
         $stmt = $dbh->prepare($sql);
-        $stmt->execute();
+        $stmt -> execute();
         $response = json_encode($stmt->fetch(),JSON_UNESCAPED_UNICODE);
         echo $response;
 }
-
-
-
-
-
 
 ?>
