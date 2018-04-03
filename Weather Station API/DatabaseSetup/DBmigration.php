@@ -7,7 +7,6 @@ $data = setupData();
 //STEP 1 
 $sql  =  "INSERT into s (s,s1) VALUES(12,13)";
 $stmt = $dbh->prepare($sql);
-
 $svar = $stmt->execute();
 
 
@@ -15,19 +14,12 @@ $svar = $stmt->execute();
 $sql2 = "Create Table IF NOT EXISTS general(
 id int(10) AUTO_INCREMENT PRIMARY KEY
 )";
-$stmt2 = $dbh->prepare($sql2);
 
+$stmt2 = $dbh->prepare($sql2);
 $stmt2->execute();
 
-
-//STEP 3
-/*var_dump($data);*/
 echo "</br>";
 foreach($data[0] as $key => $title){
-    /*$rub = str_replace("°","",$title);   */ 
-    /*    $rub = strval($rub);*/
-    /* $rub = utf8_encode($rub); */
-
     $rub = str_replace(" ","",$title);
     $rub = str_replace("(","",$rub);
     $rub = str_replace(")","",$rub);
@@ -39,27 +31,17 @@ foreach($data[0] as $key => $title){
         continue;
     } else{
         try{
-
-
-
             $sql = 'ALTER TABLE general ADD '.$rub.' varchar(255)';
             $stmt = $dbh->prepare($sql);
-
             $stmt->execute();
 
-        }catch(PDOException $ex){
+        } catch(PDOException $ex){
             /*echo $ex->getMessage();*/
             var_dump($ex);
         }
-
-
-
     }   
 
 }
 echo "TABLE CREATED"; 
-
-
-
 
 ?>
