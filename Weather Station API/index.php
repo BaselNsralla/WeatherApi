@@ -20,12 +20,7 @@
     
     <div>
         <p>You have to put a category instead of {category} which will return a JSON value of the latest update on the weather. </p>
-        
-        
-        
     </div>
-    
-    
     <div>
         <h3>Categories:</h3>
         <ul>
@@ -33,29 +28,13 @@
         <?php
          include "Categories.php";
          $arr = Categories();
- ;
            foreach ($arr as $val){
-               ?>
-               <li> <?php echo $val ?></li>
-                   
-               
-               
-               
-               
-               
-               
-               
-               
-               <?php
-               
-               
-           }
-       
+        ?>
+              <li> <?php echo $val ?></li>
+        <?php 
+           } 
          ?>
-            </ul>
+        </ul>
     </div>
-   
-    
-    
 </body>
 </html>
