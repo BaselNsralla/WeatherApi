@@ -3,8 +3,6 @@ require "../db.php";
 require "setupData.php";
 
 $data = setupData();
-
-
 $deleted = array_shift($data); 
 $pop = array_pop($data);
 
@@ -13,7 +11,6 @@ $pop = array_pop($data);
 
 $a = "swag";
 foreach($data as $key => $post){
-
     $sql = "INSERT INTO general (Tid, Intervall, LuftfuktighetInne, LuftfuktighetUte, RelativtLufttryckhpa, AbsolutLufttryckhpa, Vindhastighetkmh, Vindbykmh, Vindriktning, TemperaturInne°C, TemperaturUte°C, Daggpunkt°C, Vindavkylning°C, RegnmängdTimmemm, Regnmängd24Timmarmm, RegnmängdVeckamm, RegnmängdMånadmm, RegnmängdTotalmm) 
         VALUES(
         :a1,
@@ -35,10 +32,7 @@ foreach($data as $key => $post){
         :a17,
         :a18)";
 
-
-
     $stmt = $dbh->prepare($sql);
-
     $b = 0;
     foreach($post as $ny=>&$val){
         if  ($b ==0){
@@ -47,28 +41,11 @@ foreach($data as $key => $post){
         }
         $c = strval($b);
         $para = ':a'.$c;
-
-
         $stmt->bindParam($para,$val);
         $b++;       
-
-
     }
-
     $stmt->execute();
-
-
-
-
-    /*  }catch(PDOException $e){echo $e->getMessage();}*/
-
 }
 
 echo "Data har putats";
-
-
-
-
-
-
 ?>
