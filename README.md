@@ -1,5 +1,5 @@
 # WeatherApi
-Weather station API
+Weather station API made for Berzeliusskolans weather device csv output.
 
 *Coders:*
 Namn1: Basel Nsralla.
